@@ -7,19 +7,17 @@ import Express from 'express';
 import Template from './templates/template';
 import Routes from './routes/routes';
 
-
 const app = Express();
 
 app.use(Express.static('dist'));
 
 app.get('*', (req, res) => {
-
   // Match routes, some is used to return true if the routes array has a matching route to the reuest.
-  const match = Routes.some(route => matchPath(req.url, { path: route.path, exact: true } ));
+  const match = Routes.some(route => matchPath(req.url, { path: route.path, exact: true }));
 
   // If match is false we must be 404.
   if (!match) {
-    const errorPage = ReactDOMServer.renderToString( 
+    const errorPage = ReactDOMServer.renderToString(
       <NoMatch/>
     );
     res.status(404).send(Template({
@@ -28,11 +26,11 @@ app.get('*', (req, res) => {
     }));
     return;
   }
-  
-  const html = ReactDOMServer.renderToString( 
-      <StaticRouter location={req.url} context={{}}>
-        <App/>
-      </StaticRouter>
+
+  const html = ReactDOMServer.renderToString(
+    <StaticRouter location={req.url} context={{}}>
+      <App/>
+    </StaticRouter>
   );
 
   res.send(Template({
@@ -42,6 +40,5 @@ app.get('*', (req, res) => {
 });
 
 app.listen(3000, function () {
-  console.log('React Starter listening on port 3000!')
-})
-
+  console.log('React Starter listening on port 3000!');
+});

@@ -3,10 +3,9 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import App from './containers/App.js';
 
-
 ReactDOM.hydrate(
-  	<BrowserRouter>
-    	<App/>
-  	</BrowserRouter>,
+  <BrowserRouter>
+    <App/>
+  </BrowserRouter>,
   document.getElementById('app')
 );
